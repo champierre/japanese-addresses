@@ -11,12 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - run: mkdir data
       - run: npm install
       - run: node bin/build.js 2
       - run: node bin/build-api.js staging
       - name: Deploy generated files
         run: |
+          git fetch
           git checkout gh-pages
+          git rm -rf . > /dev/null 2>&1
+          mv out/* .
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add . > /dev/null 2>&1
+          git commit -m "Deploy" > /dev/null 2>&1
+          git push origin gh-pages
