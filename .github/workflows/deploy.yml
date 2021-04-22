@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: gh-pages
-          path: ./gh-pages
+          path: gh-pages
       - name: Deploy generated files
         working-directory: gh-pages
         run: |
