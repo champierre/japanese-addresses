@@ -26,3 +26,4 @@ jobs:
           rm -rf staging-api
           mv ../build/staging-api .
           git add staging-api > /dev/null 2>&1
+          git commit -m "Deploy" > /dev/null 2>&1
