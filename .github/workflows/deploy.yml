@@ -25,3 +25,4 @@ jobs:
         run: |
           rm -rf staging-api
           mv ../build/staging-api .
+          git add staging-api > /dev/null 2>&1
