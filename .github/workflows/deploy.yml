@@ -30,7 +30,13 @@ jobs:
           git add staging-api > /dev/null 2>&1
           git commit -m "Deploy" > /dev/null 2>&1
           git push origin gh-pages
+      - name: test
+        working-directory: gh-pages
+        run: |
           git checkout master
+      - name: test2
+        working-directory: gh-pages
+        run: |
           sed -i -e "s|\${address_count}|10000|g" README.md
           git add README.md > /dev/null 2>&1
           git commit -m "Update address count" > /dev/null 2>&1
