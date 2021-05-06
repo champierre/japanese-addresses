@@ -27,8 +27,8 @@ jobs:
       - name: Deploy generated files
         working-directory: gh-pages
         run: |
-          rm -rf staging-api
-          mkdir staging-api
+          rm -rf staging-api || true
+          mkdir staging-api || true
           touch staging-api/aaa
           git config user.name "$GITHUB_ACTOR"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
