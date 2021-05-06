@@ -15,11 +15,7 @@ jobs:
         run: |
           ADDRESS_COUNT=`cat data/patch.json | wc -l | tr -d ' '`
           sed -e "s|\${address_count}|$ADDRESS_COUNT|g" README_TEMPLATE.md > README.md
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git add README.md > /dev/null 2>&1
-          git commit -m "Update README" > /dev/null 2>&1
-          git push origin master
+
       - uses: actions/checkout@v2
         with:
           ref: gh-pages
@@ -27,6 +23,7 @@ jobs:
       - name: Deploy generated files
         working-directory: gh-pages
         run: |
+          rm -rf staging-api
           mkdir staging-api
           touch staging-api/aaa
           git config user.name "$GITHUB_ACTOR"
