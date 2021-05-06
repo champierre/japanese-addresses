@@ -38,6 +38,9 @@ jobs:
         working-directory: gh-pages
         run: |
           sed -i -e "s|\${address_count}|10000|g" README.md
+      - name: test3
+        working-directory: gh-pages
+        run: |
           git add README.md > /dev/null 2>&1
           git commit -m "Update address count" > /dev/null 2>&1
           git push origin master
