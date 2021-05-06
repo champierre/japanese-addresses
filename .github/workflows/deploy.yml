@@ -18,9 +18,10 @@ jobs:
       - name: Deploy generated files
         working-directory: gh-pages
         run: |
-          touch staging-api/ddd
+          touch staging-api/eee
           git config user.name "$GITHUB_ACTOR"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git add staging-api > /dev/null 2>&1
           git commit -m "Deploy" > /dev/null 2>&1
           git push origin gh-pages
+          git checkout master
