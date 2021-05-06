@@ -1,6 +1,6 @@
 const fs = require("fs");
 const parse = require("csv-parse");
-const basePath = `${__dirname}/../build/api/ja`;
+const basePath = process.argv[2] && process.argv[2] === 'staging' ? `${__dirname}/../build/staging-api/ja` : `${__dirname}/../api/ja`;
 const mkdirp = require("mkdirp");
 const path = require('path')
 
@@ -8,7 +8,8 @@ const main = async () => {
   mkdirp.sync(basePath);
   const content = fs.readFileSync(`${__dirname}/../data/latest_v2.csv`, 'utf-8');
 
-  const addresses = []
+  const addresses = JSON.parse(fs.readFileSync(`${__dirname}/../data/patch.json`, 'utf8'));
+
   const parser = parse(content, { delimiter: "," });
 
   parser.on("readable", () => {
