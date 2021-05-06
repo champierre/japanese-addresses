@@ -14,6 +14,7 @@ jobs:
       - run: mkdir data || true
       - run: npm install
       - run: node bin/build.js 1
+      - run: cat data/latest_v2.json | wc -l
       - run: node bin/build-api.js staging
       - uses: actions/checkout@v2
         with:
