@@ -15,6 +15,7 @@ jobs:
       - run: npm install
       - run: node bin/build.js 1
       - run: cat data/latest_v2.csv | wc -l
+      - run: sed -e "s|$address_count|10000|g" README.md
       - run: node bin/build-api.js staging
       - uses: actions/checkout@v2
         with:
