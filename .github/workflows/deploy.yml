@@ -5,7 +5,7 @@ on:
       - 'v*'
 
 jobs:
-  build-deploy:
+  deploy-versioned-api:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,4 +23,4 @@ jobs:
           aws-region: ap-northeast-1
       - name: S3 sync
         working-directory: build
-        run: aws s3 sync . s3://champierre-test --delete --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+        run: aws s3 sync . s3://champierre-test/${{ steps.get_version.outputs.VERSION }} --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
